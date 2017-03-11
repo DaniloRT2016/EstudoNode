@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app='parseator'>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>NodeAtividade</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/controllers/parser-controller.js"></script>
+    </head>
+    <body ng-controller="ParserController">
+        <div class="container">
+            <div class="jumbotron">
+                <h2 class="text-center"><strong>Resultado</strong></h2>
+            </div>
+
+            <!-- Painel do Resultado de Cada Jogo --> 
+            <div ng-repeat="jogo in games" class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" align="center"> Jogo {{ $index + 1}}</h3>
+                </div>
+                <h5>  Número total de mortes no jogo ({{ jogo.game.total_kills }}) </h5>
+
+                <h5> Lista de Jogadores :</h5> 
+
+                <div ng-repeat="jogador in jogo.game.players">
+                     -  {{jogador}}
+                </div>
+                
+                <h5> Número de mortes por Jogador :</h5>  
+
+                <div ng-repeat="(jogador, kills) in jogo.game.kills">
+                      -  {{jogador}} efetuou {{kills}} morte(s).
+                </div>
+            </div>
+        </div>      
+    </body>
+</html>
